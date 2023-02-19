@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Desafio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/3d2765a2cd.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>	
+</head>
+
+<style>
+
+body{
+	background-color: #0e0e0e;
+}
+
+
+
+.inputName{
+	margin-left: 12%;
+    margin-bottom: 7%;
+    width: 90px !important;
+    height: 20px !important;
+}
+
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.avat{
+	cursor:pointer;
+}
+
+.selected {
+  vertical-align: middle;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border-color: red;
+  border-style: inset;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.winner {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border-style: inset;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+
+.result_yes {
+    border-radius: 25px;
+    background: #228B22;
+    padding: 9px;
+    width: 30%;
+    text-align: center;
+}
+
+.result_no {
+    border-radius: 25px;
+    background: #B22222;
+    padding: 9px;
+    width: 42%;
+    text-align: center;
+}
+
+.the_end {
+    border-radius: 25px;
+    background: #4a5485;
+    padding: 9px;
+    width: 42%;
+    text-align: center;
+}
+
+
+
+
+.timer {
+  font-family: sans-serif;
+  color:lime;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  padding-right: 1px;
+}
+
+.base-timer {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  color:white;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-family: sans-serif;
+  place-items: center;
+  padding-right: 1px;
+}
+
+.hand {
+	font-size: 24px;
+	color: green;
+	padding-left: 20px;
+}
+
+
+
+/* Style the video: 100% width and height to cover the entire window */
+#bg_main {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+
+/* Add some content at the bottom of the video/page */
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+.canvas_style{
+	width: 800px;
+    margin-top: -240px;
+    margin-bottom: auto;
+    margin-left: -180px;
+}
+
+/* Avatar effects*/
+.pulse {
+
+  display: block;
+  
+  border-radius: 50%;
+  background: #cca92c;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(46,236,247, 0.4);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(46,236,247, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(46,236,247, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(46,236,247, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(46,236,247, 0.4);
+    box-shadow: 0 0 0 0 rgba(46,236,247, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(46,236,247, 0);
+      box-shadow: 0 0 0 10px rgba(46,236,247, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(46,236,247, 0);
+      box-shadow: 0 0 0 0 rgba(46,236,247, 0);
+  }
+}
+
+
+</style>
+
+
+<body style="width: 99%;">
+	<form id="myForm">
+	
+	<video autoplay muted loop id="bg_main" class="bgmain">
+		<source src="https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4" type="video/mp4">
+	</video>
+	
+	
+	
+	<h1 style="padding-left: 10px;">Roda Roda Jw</h1>
+	
+	
+	
+	
+	
+	
+		<!-- Upload do Xls com as perguntas e respostas -->
+		<div class="modal fade" id="modal_step1" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" style="color: #4a5485">Carregar as perguntas</h3>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h5>Faça o upload da planilha do Excel com as perguntas e respostas. A planilha deverá ser como no exemplo abaixo:</h5>
+						
+						<img class="img-responsive" src="pictures/xls_example.JPG" width="100%"/> 
+					
+						<br></br>
+						
+						<div id="upload_xls" >
+							
+							<input type="file" id="fileUpload" onchange="step2();" style="width: auto!important; font-size: 10px!important"/>
+							<input type="button" id="upload" value="Upload" onclick="Upload()" style="display: none"/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="close_btn" class="btn btn-secondary" data-dismiss="modal" style="display: none">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Modal de Participantes -->
+		<div class="modal fade" id="modal_step2" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" style="color: #4a5485">Participantes</h3>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h5>Quantidade de participantes:</h5> 
+						<div class="form-group">
+						  <label for="qtd_players">Quantidade de participantes:</label>
+						  <select class="form-control" id="qtd_players" onchange="changePlayersQtd();">
+						    <option>1</option>
+						    <option>2</option>
+						    <option>3</option>
+						    <option>4</option>
+						    <option>5</option>
+						    <option>6</option>
+						    <option>7</option>
+						    <option>8</option>
+						    <option>9</option>
+						    <option>10</option>
+						  </select>
+						</div>
+						
+						<br></br>
+						
+						<h5>Pronto! Você poderá personalizar o Nome e a Foto de cada jogador após fechar esta janela.</h5>
+						<h6> - Clique em Nome e informe o nome do Participante</h6>
+						<h6> - Clique no ícone de usuário para escolher uma foto</h6>
+						
+						<div class="row">
+							<div class="col-4"></div>
+								<div class="col-4">
+									<img class="img-responsive" src="pictures/nomeFoto.JPG" width="100%"/>
+								</div>
+							<div class="col-4"></div>
+						</div>
+						
+				</div>
+					<div class="modal-footer">
+						<button type="button" id="close_btn_participante" class="btn btn-secondary" data-dismiss="modal" style="display: none">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Upload do Xls com as perguntas e respostas -->
+		
+		
+		
+		
+		
+		
+		
+	
+	<div id="painel">
+		<div class="row">
+			<div class="col-5">
+			  	<canvas id="canvas" class="canvas_style" width="600" height="600"></canvas>
+			</div>	 	
+			
+			
+			<div class="col-7" style="display: none; font-size: 25px; margin-top: 10px;" id="qa">
+			  	<div class="card text-white" style="width: 95%; padding-left: 5%; padding-right: 2%; height: 80%;" id="card">
+			    	<div class="card-body" >
+					  	<div class="row" >
+						  	<output id="q" ></output>
+					  	</div>
+					  	
+					  	<div class="row" id="awnsers" style="margin-top: 1%; width: 100%; padding-top: 5%;">
+							<div class="list-group" style="width: 100%;">
+								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(1)"><output id="a1" ></output><i id="hand1" class='far hand'>&#xf0a5;</i></a>
+								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(2)"><output id="a2" ></output><i id="hand2" class='far hand'>&#xf0a5;</i></a>
+								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(3)"><output id="a3" ></output><i id="hand3" class='far hand'>&#xf0a5;</i></a>
+								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(4)"><output id="a4" ></output><i id="hand4" class='far hand'>&#xf0a5;</i></a>
+							</div>
+					  	</div>
+
+						<div id="winner_div" style="display: none">
+							<h2 align="center" style="color: white">
+								<i class="fas fa-trophy" style="color: goldenrod;"></i>
+								<output id="winner_name"></output>
+								<i class="fas fa-trophy" style="color: goldenrod;"></i>
+							</h2>
+							<img id="winner_img" src="" alt="Avatar" class="winner" style="align-items: center">
+							<h1 align="center" style="color: white">
+								<output id="winner_tt" >0</output>
+							</h1>
+						</div>
+			    	
+			    	
+			    	</div>
+				  	<div class="row" id="result" style="margin-bottom: -10%;">
+					  	<h2 id="result" style="display: none"></h2>
+				  	</div>
+				</div>
+				
+				
+
+					
+					
+				
+			  	
+			</div>
+	  	</div>
+	</div>
+  	
+	<div>
+  	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 160px;">
+	  		<button type="button" class="btn btn-danger btn-lg" id='spin'>Girar</button>
+
+	  		<div id="p1"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp1">Nome</span></h5>
+		  		
+       			<input value="" type="text" id="textp1" name="textp1" class="blur inputName" maxlength="10" style="display: none;"></input>
+		  				
+  				<img id="img1" src="pictures/avatar.JPG" alt="Avatar" class="selected avat pulse">
+		  		<input id="profile-image1-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt1" >0</output>
+	  			</h3>
+	  		</div>
+	  			
+	  		<div id="p2"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp2">Nome</span></h5>
+        		<input value="" type="text" id="textp2" name="textp2" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img2" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image2-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt2" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p3"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp3">Nome</span></h5>
+        		<input value="" type="text" id="textp3" name="textp3" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img3" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image3-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt3" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p4"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp4">Nome</span></h5>
+        		<input value="" type="text" id="textp4" name="textp4" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img4" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image4-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt4" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p5"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp5">Nome</span></h5>
+        		<input value="" type="text" id="textp5" name="textp5" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img5" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image5-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt5" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p6"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp6">Nome</span></h5>
+        		<input value="" type="text" id="textp6" name="textp6" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img6" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image6-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt6" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p7"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp7">Nome</span></h5>
+        		<input value="" type="text" id="textp7" name="textp7" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img7" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image7-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt7" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p8"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp8">Nome</span></h5>
+        		<input value="" type="text" id="textp8" name="textp8" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img8" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image8-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt8" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p9"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp9">Nome</span></h5>
+        		<input value="" type="text" id="textp9" name="textp9" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img9" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image9-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt9" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		<div id="p10"  style="display: none">
+	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp10">Nome</span></h5>
+        		<input value="" type="text" id="textp10" name="textp10" class="blur inputName" maxlength="10" style="display: none"></input>
+		  		<img id="img10" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
+		  		<input id="profile-image10-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
+	  			<h3 align="center" style="color: white">
+			  		<output id="tt10" >0</output>
+	  			</h3>
+	  		</div>
+	  		
+	  		
+
+  			<div id="app" class="float-right"></div>
+	  		
+	  		
+		
+		</nav>
+	</div>
+	
+	<input hidden="true" id="player" value=""/>
+	<input hidden="true" id="question" value=""/>
+	<input hidden="true" id="score" value=""/>
+	<input hidden="true" id="a_locked" value=""/>
+	
+	<audio id="audio_correct" src="sound/correct.mp3"></audio>
+	<audio id="audio_wrong" src="sound/wrong.mp3"></audio>
+	<audio id="audio_pass" src="sound/pass.mp3"></audio>
+	<audio id="audio_loose" src="sound/loose.mp3"></audio>
+	<audio id="audio_wheel" src="sound/wheel.mp3"></audio>
+	
+	
+	
+	
+
+
+	</form>
+</body>
+
+<script type="text/javascript">
+
+//initializing
+$("#modal_step1").modal();
+
+
+document.getElementById("player").value = 1;
+document.getElementById("question").value = 0;
+document.getElementById("card").style.opacity = 0.93;
+document.getElementById("card").style.backgroundColor = '#4a5485';
+
+
+
+
+var qtdPlayers = 1; 	
+for(i = 1; i <= qtdPlayers; i++){
+	document.getElementById("p" + i).style.display = "";
+}
+
+
+
+
+//questions
+var questions = new Array();
+var usedQuestions = new Array();
+
+
+
+
+function showBackGround(name){
+	document.getElementById("bg_main").style.transition = "all 2s";
+	
+	if(name == 'main'){
+		document.getElementById("bg_main").src = "https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4";
+		document.getElementById("bg_main").style.display = "";
+	}else if(name == 'correct'){
+	
+	}else{
+	
+	}
+	
+
+	
+	document.getElementById("bg_main").style.display = "none";
+	document.getElementById("bg_main").src = "https://media.giphy.com/media/EIbqAlY9yJlJ3WBHjc/giphy.mp4";
+	document.getElementById("bg_main").style.display = "";
+}
+
+
+function onClickToSpin(){
+	document.getElementById("bg_main").src = "https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4";
+
+	//tabela de Bugs e A fazeres
+	document.getElementById("card").style.backgroundColor = '#4a5485';
+
+	document.getElementById("hand1").style.display = "none";
+	document.getElementById("hand2").style.display = "none";
+	document.getElementById("hand3").style.display = "none";
+	document.getElementById("hand4").style.display = "none";
+	document.getElementById("painel").style.backgroundColor = "";//fundo
+	document.getElementById("qa").style.display = "none";//perguntas e respostas
+	document.getElementById("result").style.display = "none";//resultado da resposta escolhida
+	resetCountDown();//reinicia o cronometro
+	unlockSelectAnswer();//permite selecionar uma resposta
+	lockGirar();//bloqueia o botão Girar
+
+}
+
+function afterSpinner(value){
+	//limpa a resposta escolhida na última rodada
+	document.getElementById("a" + 1).style.fontWeight = "";
+	document.getElementById("a" + 2).style.fontWeight = "";
+	document.getElementById("a" + 3).style.fontWeight = "";
+	document.getElementById("a" + 4).style.fontWeight = "";
+
+	
+	if(value != "Passa" && value != "Perdeu"){
+		showQA();
+	}else{
+		updateScore();
+		nextTurn();
+	}
+}
+
+function showQA(){
+	//obtém o index de uma pergunta que ainda não tenha sido exibida
+	var q = parseInt(nextQuestion());
+	
+	//adiciona a pergunta e suas respostas na tela
+	var qa = new Array();
+	qa.push(questions[parseInt(document.getElementById("question").value)]);
+	
+	document.getElementById("q").value =  qa[0][0];
+	document.getElementById("a1").value = qa[0][1];
+	document.getElementById("a2").value = qa[0][2];
+	document.getElementById("a3").value = qa[0][3];
+	document.getElementById("a4").value = qa[0][4];
+	document.getElementById("qa").style.display = "";
+
+	startTimer();
+}
+
+
+function nextQuestion(){
+	//obtém um número aleatório entre 0 e o último index da lista de perguntas 
+	var indexOfRandomQuestion = parseInt(Math.floor(Math.random() * (questions.length)));
+
+	if (!usedQuestions.includes(indexOfRandomQuestion)) {
+		//se a questão aleatória não foi usada ela é selecionada
+		usedQuestions.push(indexOfRandomQuestion);
+		
+		//define o index da pergunta que será exibida
+		document.getElementById("question").value = indexOfRandomQuestion;
+	}else{
+		//se o número aleatório já tiver sido usado, então busca outro
+		nextQuestion();
+	}
+	 
+}
+	
+function chooseAnswer(a){
+	var islocked = (document.getElementById("a_locked").value == 'true');
+	
+	if(!islocked){
+		lockSelectAnswer();
+		document.getElementById("a" + a).style.fontWeight = "900";
+		onTimesUp();
+		var wait = parseInt(Math.floor(Math.random() * 5) + 2) * 1000;
+		
+		setTimeout(function(){ check(a) }, wait);
+	}
+}
+
+function check(a){
+	var q = document.getElementById("question").value;
+	var qa = new Array();
+	qa.push(questions[q]);
+	if(qa[0][a] == qa[0][5]){
+		document.getElementById("audio_correct").play();
+		document.getElementById("bg_main").src = "https://media.giphy.com/media/EIbqAlY9yJlJ3WBHjc/giphy.mp4";
+		//document.getElementById("card").style.backgroundColor = "#26a42e87";
+		updateScore();
+		document.getElementById("result").innerHTML  = "RESPOSTA CERTA";
+		document.getElementById("result").className = "result_yes";
+		
+	}else{
+		document.getElementById("audio_wrong").play();
+		document.getElementById("bg_main").src = "https://media.giphy.com/media/WPwD0gdWFsNRy8LA2P/giphy.mp4";
+		//document.getElementById("card").style.backgroundColor = "#ff000078";
+		document.getElementById("result").className = "result_no";
+		document.getElementById("result").innerHTML  = "RESPOSTA ERRADA";
+		
+	}
+	document.getElementById("result").style.display = "";
+	
+	var correctAnswer = "";
+	if(qa[0][1] == qa[0][5]){
+		correctAnswer = "hand1";
+	}else if(qa[0][2] == qa[0][5]){
+		correctAnswer = "hand2";
+	}else if(qa[0][3] == qa[0][5]){
+		correctAnswer = "hand3";
+	}else if(qa[0][4] == qa[0][5]){
+		correctAnswer = "hand4";
+	}
+	document.getElementById(correctAnswer).style.display = "";
+	
+	
+	nextTurn();
+}
+
+function updateScore(){
+	var newScore = document.getElementById("score").value;
+	if(newScore != "Passa" && newScore != "Perdeu"){
+		var oldScore = document.getElementById("tt" + document.getElementById("player").value ).value;
+		var newScore = parseInt(oldScore) + parseInt(newScore);
+		document.getElementById("tt" + document.getElementById("player").value ).value = newScore;
+	}else if(newScore == "Perdeu"){
+		document.getElementById("audio_loose").play();
+		document.getElementById("tt" + document.getElementById("player").value ).value = 0;
+	}else if(newScore == "Passa"	){
+		document.getElementById("audio_pass").play();
+	}
+}
+
+function nextTurn(){
+
+	if(usedQuestions.length == questions.length){
+		document.getElementById("result").className = "the_end";
+		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
+		document.getElementById("bg_main").src = "https://media.giphy.com/media/3xz2BRU6WpaxKiPzuE/giphy.mp4";
+		setTimeout(function(){ showRanking() }, 5000);
+
+	} else{
+		nextPlayer();
+		unlockGirar();
+	}
+
+	// if(parseInt(document.getElementById("question").value) < questions.length -1){
+	// 	document.getElementById("question").value = parseInt(document.getElementById("question").value) + 1;
+	// 	nextPlayer();
+	// }else{
+	// 	alert('acabou o jogo!!')
+	// }
+	// unlockGirar();
+	
+}
+
+function nextPlayer(){
+	document.getElementById("img" + document.getElementById("player").value).className = "avatar";
+	
+	if( parseInt(document.getElementById("player").value) == qtdPlayers){
+		document.getElementById("player").value = 1;
+	}else{
+		document.getElementById("player").value = parseInt(document.getElementById("player").value) + 1;
+	}
+	document.getElementById("img" + document.getElementById("player").value).className = "selected pulse";
+}
+
+function lockGirar(){
+	document.getElementById("spin").disabled = 'disabled';
+}
+function unlockGirar(){
+	document.getElementById("spin").disabled = '';
+}
+
+function lockSelectAnswer(){
+	document.getElementById("a_locked").value = true;
+}
+
+function unlockSelectAnswer(){
+	document.getElementById("a_locked").value = false;
+}
+
+function resetCountDown(){
+	timePassed = 0;
+	timeLeft = TIME_LIMIT;
+	document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", 283);
+	document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+}
+
+
+function showRanking(){
+	var ranking = new Array();
+	
+	//obtém e organiza todos os pontos
+	for(i = 1; i <= qtdPlayers; i++){
+		ranking.push(document.getElementById("tt" + i).value);
+	}
+	ranking.sort(function(a, b){return b - a});
+	
+	//obtém o player com a maior pontuação e exibe
+	for(i = 1; i <= qtdPlayers; i++){
+		if(document.getElementById("tt" + i).value == ranking[0]){
+			document.getElementById("q").style.display = "none";
+			document.getElementById("awnsers").style.display = "none";
+			document.getElementById("winner_name").value = document.getElementById("textp" + i).value;
+			document.getElementById("winner_img").src = document.getElementById("img" + i).src;
+			document.getElementById("winner_tt").value = document.getElementById("tt" + i).value;
+			document.getElementById("winner_div").style.display = "";
+			document.getElementById("card").style.backgroundColor = "transparent";
+			document.getElementById("card").style.borderColor = "transparent";
+		}
+	}
+	
+	
+}
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+var options = ["25", "100", "Perdeu", "110", "10", "5", "120", "Passa", "90", "20", "15", "80", "Perdeu", "70", "30", "45", "60", "Passa", "50", "40"];
+
+var startAngle = 0;
+var arc = Math.PI / (options.length / 2);
+var spinTimeout = null;
+
+var spinArcStart = 10;
+var spinTime = 0;
+var spinTimeTotal = 0;
+
+var ctx;
+
+document.getElementById("spin").addEventListener("click", spin);
+
+function byte2Hex(n) {
+  var nybHexString = "0123456789ABCDEF";
+  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+}
+
+function RGB2Color(r,g,b) {
+	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
+
+function getColor(item, maxitem) {
+  var phase = 0;
+  var center = 128;
+  var width = 127;
+  var frequency = Math.PI*2/maxitem;
+  
+  red   = Math.sin(frequency*item+2+phase) * width + center;
+  green = Math.sin(frequency*item+0+phase) * width + center;
+  blue  = Math.sin(frequency*item+4+phase) * width + center;
+  
+  return RGB2Color(red,green,blue);
+}
+
+function drawRouletteWheel() {
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    var outsideRadius = 200;
+    var textRadius = 160;
+    var insideRadius = 125;
+
+    ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,700,700);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+
+    ctx.font = 'bold 20px Helvetica, Arial';
+
+    for(var i = 0; i < options.length; i++) {
+	
+	
+		if(options[i] == "Perdeu" || options[i] == "Passa" ){
+			ctx.font = 'bold 14px Helvetica, Arial';	
+		}else{
+			ctx.font = 'bold 20px Helvetica, Arial';
+		}
+	
+	
+      var angle = startAngle + i * arc;
+      //ctx.fillStyle = colors[i];
+      ctx.fillStyle = getColor(i, options.length);
+
+      ctx.beginPath();
+      ctx.arc(350, 350, outsideRadius, angle, angle + arc, false);
+      ctx.arc(350, 350, insideRadius, angle + arc, angle, true);
+      ctx.stroke();
+      ctx.fill();
+
+      ctx.save();
+      ctx.shadowOffsetX = -1;
+      ctx.shadowOffsetY = -1;
+      ctx.shadowBlur    = 0;
+      ctx.shadowColor   = "rgb(220,220,220)";
+      ctx.fillStyle = "black";
+      ctx.translate(350 + Math.cos(angle + arc / 2) * textRadius, 
+                    350 + Math.sin(angle + arc / 2) * textRadius);
+      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      var text = options[i];
+      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.restore();
+    } 
+
+    //Arrow
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.moveTo(350 - 4, 350 - (outsideRadius + 5));
+    ctx.lineTo(350 + 4, 350 - (outsideRadius + 5));
+    ctx.lineTo(350 + 4, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 + 9, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 + 0, 350 - (outsideRadius - 13));
+    ctx.lineTo(350 - 9, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 - 4, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 - 4, 350 - (outsideRadius + 5));
+    ctx.fill();
+  }
+}
+
+function spin() {
+	onClickToSpin();
+	
+	spinAngleStart = Math.random() * 10 + 10;
+	spinTime = 0;
+	spinTimeTotal = Math.random() * 3 + 4 * 1000;
+	rotateWheel();
+}
+
+function rotateWheel() {
+  spinTime += 30;
+  if(spinTime >= spinTimeTotal) {
+    stopRotateWheel();
+    return;
+  }
+  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+  startAngle += (spinAngle * Math.PI / 180);
+  drawRouletteWheel();
+  spinTimeout = setTimeout('rotateWheel()', 30);
+ }
+
+function stopRotateWheel() {
+  clearTimeout(spinTimeout);
+  var degrees = startAngle * 180 / Math.PI + 90;
+  var arcd = arc * 180 / Math.PI;
+  var index = Math.floor((360 - degrees % 360) / arcd);
+  ctx.save();
+  ctx.font = 'bold 50px Helvetica, Arial';
+  var text = options[index];
+  document.getElementById("score").value = text;
+  ctx.fillText(text, 350 - ctx.measureText(text).width / 2, 350 + 10);
+  ctx.restore();
+  afterSpinner(text);
+}
+
+function easeOut(t, b, c, d) {
+  var ts = (t/=d)*t;
+  var tc = ts*t;
+  return b+c*(tc + -3*ts + 3*t);
+}
+
+drawRouletteWheel();
+
+
+
+
+
+
+const FULL_DASH_ARRAY = 283;
+const WARNING_THRESHOLD = 10;
+const ALERT_THRESHOLD = 5;
+
+const COLOR_CODES = {
+  info: {
+    color: "green"
+  },
+  warning: {
+    color: "orange",
+    threshold: WARNING_THRESHOLD
+  },
+  alert: {
+    color: "red",
+    threshold: ALERT_THRESHOLD
+  }
+};
+
+const TIME_LIMIT = 45;
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+let timerInterval = null;
+let remainingPathColor = COLOR_CODES.info.color;
+
+document.getElementById("app").innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+    timeLeft
+  )}</span>
+</div>
+`;
+
+
+function onTimesUp() {
+  clearInterval(timerInterval);
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.getElementById("base-timer-label").innerHTML = formatTime(
+      timeLeft
+    );
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
+
+    if (timeLeft === 0) {
+      onTimesUp();
+    }
+  }, 1000);
+}
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+function setRemainingPathColor(timeLeft) {
+  const { alert, warning, info } = COLOR_CODES;
+  if (timeLeft <= alert.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(warning.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(alert.color);
+  } else if (timeLeft <= warning.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(info.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(warning.color);
+  }
+}
+
+function calculateTimeFraction() {
+  const rawTimeFraction = timeLeft / TIME_LIMIT;
+  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+  const circleDasharray = `${(
+    calculateTimeFraction() * FULL_DASH_ARRAY
+  ).toFixed(0)} 283`;
+  document
+    .getElementById("base-timer-path-remaining")
+    .setAttribute("stroke-dasharray", circleDasharray);
+}
+
+
+
+
+
+
+
+
+//Upload do xls com as perguntas e respostas
+function Upload() {
+    //Reference the FileUpload element.
+    var fileUpload = document.getElementById("fileUpload");
+
+    //Validate whether File is valid Excel file.
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+    if (regex.test(fileUpload.value.toLowerCase())) {
+        if (typeof (FileReader) != "undefined") {
+            var reader = new FileReader();
+
+            //For Browsers other than IE.
+            if (reader.readAsBinaryString) {
+                reader.onload = function (e) {
+                    ProcessExcel(e.target.result);
+                };
+                reader.readAsBinaryString(fileUpload.files[0]);
+            } else {
+                //For IE Browser.
+                reader.onload = function (e) {
+                    var data = "";
+                    var bytes = new Uint8Array(e.target.result);
+                    for (var i = 0; i < bytes.byteLength; i++) {
+                        data += String.fromCharCode(bytes[i]);
+                    }
+                    ProcessExcel(data);
+                };
+                reader.readAsArrayBuffer(fileUpload.files[0]);
+            }
+        } else {
+            alert("Seu navegador não suporta HTML5.");
+        }
+    } else {
+        alert("Apenas arquivos do Excel são permitidos.");
+    }
+    
+    //oculta o componente após o upload
+    document.getElementById("upload_xls").style.display = "none";
+};
+
+function ProcessExcel(data) {
+    //Read the Excel File data.
+    var workbook = XLSX.read(data, {
+        type: 'binary'
+    });
+
+    //Fetch the name of First Sheet.
+    var firstSheet = workbook.SheetNames[0];
+
+    //Read all rows from First Sheet into an JSON array.
+    var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+    for (var i = 0; i < excelRows.length; i++) {
+        
+        var id = excelRows[i].Id;
+    	var question = excelRows[i].Question;
+        var a1 = excelRows[i].A1;
+        var a2 = excelRows[i].A2;
+        var a3 = excelRows[i].A3;
+        var a4 = excelRows[i].A4;
+        var correctAnswer = '';
+
+		if(excelRows[i].CA == 'A1'){
+			correctAnswer = a1;
+		}else if(excelRows[i].CA == 'A2'){
+			correctAnswer = a2;
+		}else if(excelRows[i].CA == 'A3'){
+			correctAnswer = a3;
+		}else if(excelRows[i].CA == 'A4'){
+			correctAnswer = a4;
+		}
+		
+        questions.push( new Array(question, a1, a2, a3, a4, correctAnswer));
+    }
+    
+   
+};
+//-------------------------------
+
+function step2(){
+	upload.click();
+	close_btn.click();
+	$("#modal_step2").modal();
+}
+
+function changePlayersQtd(){
+	qtdPlayers = document.getElementById("qtd_players").value;
+	
+	//oculta todos na navbar
+	for (var i = 1; i <= 10; i++) {
+		document.getElementById("p" + i).style.display = "none";
+	}
+	
+	//exibe de acordo com a qtd selecionada
+	for (var i = 1; i <= qtdPlayers; i++) {
+		document.getElementById("p" + i).style.display = "";
+	}
+	
+}
+
+
+
+$('.clickMe').click(function () {
+    "use strict";
+    $(this).hide();
+    $('#' + $(this).attr('for'))
+                    .val($(this).text())
+                    .toggleClass("form-control")
+                    .show()
+                    .focus();
+});
+
+$('.blur').blur(function () {
+    "use strict";
+    $(this)
+        .hide()
+        .toggleClass("form-control");
+    var myid = (this).id;
+    $('span[for=' + myid + ']')
+        .text($(this).val())
+        .show();
+});
+
+
+
+	
+	
+	
+$(document).ready(function() {
+
+	    
+    var readURL = function(input, id) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $(id).attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    
+    
+    
+    $("#profile-image1-upload").on('change', function(){
+        readURL(this, "#img1");
+    });
+    
+    $("#img1").on('click', function() {
+       $("#profile-image1-upload").click();
+    });
+    
+    $("#profile-image2-upload").on('change', function(){
+        readURL(this, "#img2");
+    });
+    
+    $("#img2").on('click', function() {
+       $("#profile-image2-upload").click();
+    });
+    
+    $("#profile-image3-upload").on('change', function(){
+        readURL(this, "#img3");
+    });
+    
+    $("#img3").on('click', function() {
+       $("#profile-image3-upload").click();
+    });
+    
+    $("#profile-image4-upload").on('change', function(){
+        readURL(this, "#img4");
+    });
+    
+    $("#img4").on('click', function() {
+       $("#profile-image4-upload").click();
+    });
+    
+    $("#profile-image5-upload").on('change', function(){
+        readURL(this, "#img5");
+    });
+    
+    $("#img5").on('click', function() {
+       $("#profile-image5-upload").click();
+    });
+
+    $("#profile-image6-upload").on('change', function(){
+        readURL(this, "#img6");
+    });
+    
+    $("#img6").on('click', function() {
+       $("#profile-image6-upload").click();
+    });
+    
+    $("#profile-image7-upload").on('change', function(){
+        readURL(this, "#img7");
+    });
+    
+    $("#img7").on('click', function() {
+       $("#profile-image7-upload").click();
+    });
+    
+    $("#profile-image8-upload").on('change', function(){
+        readURL(this, "#img8");
+    });
+    
+    $("#img8").on('click', function() {
+       $("#profile-image8-upload").click();
+    });
+    
+    $("#profile-image9-upload").on('change', function(){
+        readURL(this, "#img9");
+    });
+    
+    $("#img9").on('click', function() {
+       $("#profile-image9-upload").click();
+    });
+    
+    $("#profile-image10-upload").on('change', function(){
+        readURL(this, "#img10");
+    });
+    
+    $("#img10").on('click', function() {
+       $("#profile-image10-upload").click();
+    });
+    
+});
+	
+	
+	
+	
+	      
+</script>
+
+
+</html>

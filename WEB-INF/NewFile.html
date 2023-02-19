@@ -1,0 +1,53 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<v1:EnviarLoteEventos>
+			<v1:loteEventos>
+				<eSocial xmlns="http://www.esocial.gov.br/schema/lote/eventos/envio/v1_1_1">
+					<envioLoteEventos grupo="2">
+						<ideEmpregador>
+							<tpInsc>1</tpInsc>
+							<nrInsc>00910509175800</nrInsc>
+						</ideEmpregador>
+						<ideTransmissor>
+							<tpInsc>1</tpInsc>
+							<nrInsc>00910509000171</nrInsc>
+						</ideTransmissor>
+						<eventos>
+							<evento Id="ID1009105091758002019080515585600710">
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAvPrevio/v02_05_00">
+	<evtAvPrevio Id="ID1009105091758002019080515585600710">
+		<ideEvento>
+			<indRetif>1</indRetif>
+			<!--<nrRecibo>??????</nrRecibo>-->
+			<tpAmb>2</tpAmb>
+			<procEmi>2</procEmi>
+			<verProc>91</verProc>
+		</ideEvento>
+		<ideEmpregador>
+			<tpInsc>1</tpInsc>
+			<nrInsc>00910509175800</nrInsc>
+		</ideEmpregador>
+		<ideVinculo>
+			<cpfTrab>30912725591</cpfTrab>
+			<nisTrab>00000000011</nisTrab>
+			<matricula>S2250_RNG00378_IGV</matricula>
+		</ideVinculo>
+		<infoAvPrevio>
+			<detAvPrevio>
+				<dtAvPrv>2019-05-20</dtAvPrv>
+				<dtPrevDeslig>2019-05-20</dtPrevDeslig>
+				<tpAvPrevio>2</tpAvPrevio>
+				<observacao>CAMPO OBSERVACAO</observacao>
+			</detAvPrevio>
+		</infoAvPrevio>
+	</evtAvPrevio>
+</eSocial>
+							</evento>
+						</eventos>
+					</envioLoteEventos>             
+				</eSocial>   
+			</v1:loteEventos>
+		</v1:EnviarLoteEventos>
+	</soapenv:Body>
+</soapenv:Envelope>	
