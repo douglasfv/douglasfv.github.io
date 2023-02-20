@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Desafio</title>
+  <title>1.23</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -286,7 +286,7 @@ body{
 	
 	
 	
-	<h1 style="padding-left: 10px;">Roda Roda v1.021</h1>
+	<h1 style="padding-left: 10px;">Roda Roda</h1>
 	
 	
 	
@@ -534,17 +534,7 @@ body{
 	<input hidden="true" id="score" value=""/>
 	<input hidden="true" id="a_locked" value=""/>
 	
-	<audio id="audio_correct" src="correct.mp3"></audio>
-	<audio id="audio_wrong" src="wrong.mp3"></audio>
-	<audio id="audio_pass" src="pass.mp3"></audio>
-	<audio id="audio_loose" src="loose.mp3"></audio>
-	<audio id="audio_wheel" src="wheel.mp3"></audio>
 	
-	
-	
-	
-
-
 	</form>
 </body>
 
@@ -552,6 +542,13 @@ body{
 
 //initializing
 $("#modal_step1").modal();
+	
+var audio_correct = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/correct.mp3?raw=true');
+var audio_wrong = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/wrong.mp3?raw=true');
+var audio_pass = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/pass.mp3?raw=true');
+var audio_loose = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/loose.mp3?raw=true');
+var audio_wheel = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/loose.mp3?raw=true');
+
 
 
 document.getElementById("player").value = 1;
@@ -669,14 +666,14 @@ function check(a){
 	var qa = new Array();
 	qa.push(questions[q]);
 	if(qa[0][a] == qa[0][5]){
-		document.getElementById("audio_correct").play();		
+		audio_correct.play();		
 		document.body.className = "bkgd_green";
 		updateScore();
 		document.getElementById("result").innerHTML  = "RESPOSTA CERTA";
 		document.getElementById("result").className = "result_yes";
 		
 	}else{
-		document.getElementById("audio_wrong").play();
+		audio_wrong.play();
 		document.body.className = "bkgd_red";
 		document.getElementById("result").className = "result_no";
 		document.getElementById("result").innerHTML  = "RESPOSTA ERRADA";
@@ -707,10 +704,10 @@ function updateScore(){
 		var newScore = parseInt(oldScore) + parseInt(newScore);
 		document.getElementById("tt" + document.getElementById("player").value ).value = newScore;
 	}else if(newScore == "Perdeu"){
-		document.getElementById("audio_loose").play();
+		audio_loose.play();
 		document.getElementById("tt" + document.getElementById("player").value ).value = 0;
 	}else if(newScore == "Passa"	){
-		document.getElementById("audio_pass").play();
+		audio_pass.play();
 	}
 }
 
