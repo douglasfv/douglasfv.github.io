@@ -31,11 +31,11 @@ body{
 
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .avat{
@@ -44,13 +44,13 @@ body{
 
 .selected {
   vertical-align: middle;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border-color: red;
   border-style: inset;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .winner {
@@ -398,114 +398,93 @@ body{
 	</div>
   	
 	<div>
-  	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 70px;">
+  	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 65px;">
 	  		<button type="button" class="btn btn-danger btn-lg" id='spin'>Girar</button>
 
-	  		<div id="p1"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp1">Nome</span></h5>
-		  		
-       			<input value="" type="text" id="textp1" name="textp1" class="blur inputName" maxlength="10" style="display: none;"></input>
-		  				
+	  		<div id="p1"  style="display: none" >	  					  		       					  				
   				<img id="img1" src="pictures/avatar.JPG" alt="Avatar" class="selected avat pulse">
 		  		<input id="profile-image1-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt1" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  			
-	  		<div id="p2"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp2">Nome</span></h5>
-        		<input value="" type="text" id="textp2" name="textp2" class="blur inputName" maxlength="10" style="display: none"></input>
+	  		<div id="p2"  style="display: none">	  			
 		  		<img id="img2" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image2-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt2" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
-	  		<div id="p3"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp3">Nome</span></h5>
-        		<input value="" type="text" id="textp3" name="textp3" class="blur inputName" maxlength="10" style="display: none"></input>
+	  		<div id="p3"  style="display: none">	  			
 		  		<img id="img3" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image3-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt3" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
-	  		<div id="p4"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp4">Nome</span></h5>
-        		<input value="" type="text" id="textp4" name="textp4" class="blur inputName" maxlength="10" style="display: none"></input>
+	  		<div id="p4"  style="display: none">	  			
 		  		<img id="img4" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image4-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt4" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
-	  		<div id="p5"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp5">Nome</span></h5>
-        		<input value="" type="text" id="textp5" name="textp5" class="blur inputName" maxlength="10" style="display: none"></input>
+	  		<div id="p5"  style="display: none">	  			
 		  		<img id="img5" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image5-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt5" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		<div id="p6"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp6">Nome</span></h5>
-        		<input value="" type="text" id="textp6" name="textp6" class="blur inputName" maxlength="10" style="display: none"></input>
 		  		<img id="img6" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image6-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt6" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		<div id="p7"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp7">Nome</span></h5>
-        		<input value="" type="text" id="textp7" name="textp7" class="blur inputName" maxlength="10" style="display: none"></input>
 		  		<img id="img7" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image7-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt7" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		<div id="p8"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp8">Nome</span></h5>
         		<input value="" type="text" id="textp8" name="textp8" class="blur inputName" maxlength="10" style="display: none"></input>
 		  		<img id="img8" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image8-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt8" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		<div id="p9"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp9">Nome</span></h5>
-        		<input value="" type="text" id="textp9" name="textp9" class="blur inputName" maxlength="10" style="display: none"></input>
 		  		<img id="img9" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image9-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt9" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		<div id="p10"  style="display: none">
-	  			<h5 align="center" style="color: white"><span class="label label-default clickMe" for="textp10">Nome</span></h5>
-        		<input value="" type="text" id="textp10" name="textp10" class="blur inputName" maxlength="10" style="display: none"></input>
 		  		<img id="img10" src="pictures/avatar.JPG" alt="Avatar" class="avatar">
 		  		<input id="profile-image10-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
-	  			<h3 align="center" style="color: white">
+	  			<div align="center" style="color: white; font-size:12px">
 			  		<output id="tt10" >0</output>
-	  			</h3>
+	  			</div>
 	  		</div>
 	  		
 	  		
 
-  			<div id="app" class="float-right"></div>
+  			<div id="app" class="float-right" style="margin-bottom: 6px"></div>
 	  		
 	  		
 		
@@ -985,10 +964,10 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 document.getElementById("app").innerHTML = `
-<div class="base-timer">
-  <svg class="base-timer__svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+<div class="base-timer" style="width: 50px; height: 50px">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="30" cy="30" r="45"></circle>
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
       <path
         id="base-timer-path-remaining"
         stroke-dasharray="283"
@@ -1002,7 +981,7 @@ document.getElementById("app").innerHTML = `
       ></path>
     </g>
   </svg>
-  <span id="base-timer-label" class="base-timer__label">${formatTime(
+  <span id="base-timer-label" class="base-timer__label" style="width: 50px; height: 50px; font-size:15px">${formatTime(
     timeLeft
   )}</span>
 </div>
