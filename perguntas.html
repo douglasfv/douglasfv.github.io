@@ -3,7 +3,7 @@
 <head>
   <title>Desafio</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -11,6 +11,7 @@
   <script src="https://kit.fontawesome.com/3d2765a2cd.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>	
+	
 </head>
 
 <style>
@@ -964,7 +965,7 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 document.getElementById("app").innerHTML = `
-<div class="base-timer" style="width: 50px; height: 50px">
+<div class="base-timer" style="width: 85px; height: 85px">
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
       <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
@@ -981,7 +982,7 @@ document.getElementById("app").innerHTML = `
       ></path>
     </g>
   </svg>
-  <span id="base-timer-label" class="base-timer__label" style="width: 50px; height: 50px; font-size:15px">${formatTime(
+  <span id="base-timer-label" class="base-timer__label" style="width: 85px; height: 85px; font-size:30px">${formatTime(
     timeLeft
   )}</span>
 </div>
