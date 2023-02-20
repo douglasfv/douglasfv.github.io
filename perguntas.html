@@ -237,19 +237,56 @@ body{
 }
 
 
+
+.bkgd_main {
+  background: linear-gradient(-95deg, #ee7752, #e73c7e, #0e0d0d, #23a6d5, #23d5ab, #2d3ad9, #2eb732);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+.bkgd_green {
+  background: linear-gradient(-95deg, #42e937, #0e0d0d, #42e937);
+  background-size: 400% 400%;
+  animation: gradient 1s ease infinite;
+  height: 100vh;
+}
+
+.bkgd_red {
+  background: linear-gradient(-95deg, #e73344, #0e0d0d, #e73344);
+  background-size: 400% 400%;
+  animation: gradient 1s ease infinite;
+  height: 100vh;
+}
+
+.bkgd_win {
+  background: linear-gradient(-95deg, #ebc407, #7e7028, #ebc407);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 </style>
 
 
-<body style="width: 99%;">
+<body style="width: 99%;" class="bkgd_main">
 	<form id="myForm">
 	
-	<video autoplay muted loop id="bg_main" class="bgmain">
-		<source src="https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4" type="video/mp4">
-	</video>
 	
 	
-	
-	<h1 style="padding-left: 10px;">Roda Roda Jw</h1>
+	<h1 style="padding-left: 10px;">Roda Roda</h1>
 	
 	
 	
@@ -547,18 +584,17 @@ function showBackGround(name){
 	document.getElementById("bg_main").style.transition = "all 2s";
 	
 	if(name == 'main'){
-		document.getElementById("bg_main").src = "https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4";
+		document.getElementById("bg_main").src = "https://giphy.com/embed/a3IGFA4BKrE40";
 		document.getElementById("bg_main").style.display = "";
 	}else if(name == 'correct'){
 	
 	}else{
 	
 	}
-	
 
 	
 	document.getElementById("bg_main").style.display = "none";
-	document.getElementById("bg_main").src = "https://media.giphy.com/media/EIbqAlY9yJlJ3WBHjc/giphy.mp4";
+	document.getElementById("bg_main").src = "https://giphy.com/embed/a3IGFA4BKrE40";
 	document.getElementById("bg_main").style.display = "";
 }
 
@@ -652,17 +688,15 @@ function check(a){
 	var qa = new Array();
 	qa.push(questions[q]);
 	if(qa[0][a] == qa[0][5]){
-		document.getElementById("audio_correct").play();
-		document.getElementById("bg_main").src = "https://media.giphy.com/media/EIbqAlY9yJlJ3WBHjc/giphy.mp4";
-		//document.getElementById("card").style.backgroundColor = "#26a42e87";
+		document.getElementById("audio_correct").play();		
+		document.body.className = "bkgd_green";
 		updateScore();
 		document.getElementById("result").innerHTML  = "RESPOSTA CERTA";
 		document.getElementById("result").className = "result_yes";
 		
 	}else{
 		document.getElementById("audio_wrong").play();
-		document.getElementById("bg_main").src = "https://media.giphy.com/media/WPwD0gdWFsNRy8LA2P/giphy.mp4";
-		//document.getElementById("card").style.backgroundColor = "#ff000078";
+		document.body.className = "bkgd_red";
 		document.getElementById("result").className = "result_no";
 		document.getElementById("result").innerHTML  = "RESPOSTA ERRADA";
 		
@@ -705,7 +739,7 @@ function nextTurn(){
 	if(round == maxRounds && parseInt(document.getElementById("player").value) == qtdPlayers){
 		document.getElementById("result").className = "the_end";
 		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
-		document.getElementById("bg_main").src = "https://media.giphy.com/media/3xz2BRU6WpaxKiPzuE/giphy.mp4";
+		document.body.className = "bkgd_win";
 		setTimeout(function(){ showRanking() }, 5000);
 	}else{
 		nextPlayer();
@@ -780,8 +814,7 @@ function showRanking(){
 	for(i = 1; i <= qtdPlayers; i++){
 		if(document.getElementById("tt" + i).value == ranking[0]){
 			document.getElementById("q").style.display = "none";
-			document.getElementById("awnsers").style.display = "none";
-			document.getElementById("winner_name").value = document.getElementById("textp" + i).value;
+			document.getElementById("awnsers").style.display = "none";			
 			document.getElementById("winner_img").src = document.getElementById("img" + i).src;
 			document.getElementById("winner_tt").value = document.getElementById("tt" + i).value;
 			document.getElementById("winner_div").style.display = "";
@@ -1165,7 +1198,7 @@ function changePlayersQtd(){
 	
 	
 	//1 hour game + -
-	maxRounds = Math.round(50/qtdPlayers);
+	maxRounds = Math.round(4/qtdPlayers);
 	
 	
 	//oculta todos na navbar
