@@ -32,8 +32,8 @@ body{
 
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   margin-left: 10px;
   margin-right: 10px;
@@ -45,8 +45,8 @@ body{
 
 .selected {
   vertical-align: middle;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border-color: red;
   border-style: inset;
@@ -400,7 +400,7 @@ body{
   	
 	<div>
   	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 220px;">
-	  		<button type="button" class="btn btn-danger btn-lg" id='spin'>Girar</button>
+	  		<button type="button" class="btn btn-danger btn-lg" id='spin' style="width: 100px; height: 100px">Girar</button>
 
 	  		<div id="p1"  style="display: none" >	  					  		       					  				
   				<img id="img1" src="pictures/avatar.JPG" alt="Avatar" class="selected avat pulse">
@@ -982,7 +982,7 @@ document.getElementById("app").innerHTML = `
       ></path>
     </g>
   </svg>
-  <span id="base-timer-label" class="base-timer__label" style="width: 185px; height: 185px; font-size:130px">${formatTime(
+  <span id="base-timer-label" class="base-timer__label" style="width: 185px; height: 185px; font-size:70px">${formatTime(
     timeLeft
   )}</span>
 </div>
