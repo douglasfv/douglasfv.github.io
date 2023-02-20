@@ -580,27 +580,8 @@ var usedQuestions = new Array();
 
 
 
-function showBackGround(name){
-	document.getElementById("bg_main").style.transition = "all 2s";
-	
-	if(name == 'main'){
-		document.getElementById("bg_main").src = "https://giphy.com/embed/a3IGFA4BKrE40";
-		document.getElementById("bg_main").style.display = "";
-	}else if(name == 'correct'){
-	
-	}else{
-	
-	}
-
-	
-	document.getElementById("bg_main").style.display = "none";
-	document.getElementById("bg_main").src = "https://giphy.com/embed/a3IGFA4BKrE40";
-	document.getElementById("bg_main").style.display = "";
-}
-
-
 function onClickToSpin(){
-	document.getElementById("bg_main").src = "https://media.giphy.com/media/sxwk9hGlsULcYm6hDX/giphy.mp4";
+	document.body.className = "bkgd_main";
 
 	//tabela de Bugs e A fazeres
 	document.getElementById("card").style.backgroundColor = '#4a5485';
