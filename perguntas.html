@@ -525,12 +525,15 @@ document.getElementById("card").style.backgroundColor = '#4a5485';
 
 
 
+var maxRounds = 1;
+
+
+var round = 1; 
+
 var qtdPlayers = 1; 	
 for(i = 1; i <= qtdPlayers; i++){
 	document.getElementById("p" + i).style.display = "";
 }
-
-
 
 
 //questions
@@ -698,6 +701,18 @@ function updateScore(){
 
 function nextTurn(){
 
+
+	if(round == maxRounds && parseInt(document.getElementById("player").value) == qtdPlayers){
+		document.getElementById("result").className = "the_end";
+		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
+		document.getElementById("bg_main").src = "https://media.giphy.com/media/3xz2BRU6WpaxKiPzuE/giphy.mp4";
+		setTimeout(function(){ showRanking() }, 5000);
+	}else{
+		nextPlayer();
+		unlockGirar();
+	}
+
+	/* Comment on feb 2, 2023
 	if(usedQuestions.length == questions.length){
 		document.getElementById("result").className = "the_end";
 		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
@@ -709,13 +724,8 @@ function nextTurn(){
 		unlockGirar();
 	}
 
-	// if(parseInt(document.getElementById("question").value) < questions.length -1){
-	// 	document.getElementById("question").value = parseInt(document.getElementById("question").value) + 1;
-	// 	nextPlayer();
-	// }else{
-	// 	alert('acabou o jogo!!')
-	// }
-	// unlockGirar();
+	*/
+	
 	
 }
 
@@ -724,6 +734,10 @@ function nextPlayer(){
 	
 	if( parseInt(document.getElementById("player").value) == qtdPlayers){
 		document.getElementById("player").value = 1;
+		
+		//starting a new round
+		round = round + 1;
+		
 	}else{
 		document.getElementById("player").value = parseInt(document.getElementById("player").value) + 1;
 	}
@@ -1105,6 +1119,7 @@ function ProcessExcel(data) {
     var workbook = XLSX.read(data, {
         type: 'binary'
     });
+	
 
     //Fetch the name of First Sheet.
     var firstSheet = workbook.SheetNames[0];
@@ -1147,6 +1162,11 @@ function step2(){
 
 function changePlayersQtd(){
 	qtdPlayers = document.getElementById("qtd_players").value;
+	
+	
+	//1 hour game + -
+	maxRounds = Math.round(50/qtdPlayers);
+	
 	
 	//oculta todos na navbar
 	for (var i = 1; i <= 10; i++) {
