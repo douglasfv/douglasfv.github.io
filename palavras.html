@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000003</h1>	
+		<h1>TESTE 000004</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -33,24 +33,22 @@
 	
 
 	var audio_correct = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/correct.mp3');
-	var audio_wrong = new Audio('../sound/wrong.mp3');
+	var audio_wrong = new Audio('../wrong.wav');
 	var audio_pass = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/pass.mp3');
 	var audio_loose = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/loose.mp3');
-	var audio_wheel = new Audio('wheel.wav');
+	var audio_wheel = new Audio('../wrong.wav');
 	
 	
 	function playSoundTest(){
-		audio_correct.load();
-		audio_correct.play();
 		
-		audio_wrong.load();
+		audio_correct.play();
+				
 		audio_wrong.play();
 		
 		audio_pass.play();
-		audio_loose.play();
-		audio_wrong.play();
 		
-		audio_wheel.load();
+		audio_loose.play();
+		
 		audio_wheel.play();
 	}
 	    
