@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000019</h1>	
+		<h1>TESTE 000020</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playError();">
@@ -37,7 +37,7 @@
 	
 setTimeout(function(){
    window.location.reload(1);
-}, 9000);
+}, 15000);
 
 
 	
@@ -45,11 +45,7 @@ setTimeout(function(){
 	
 	
 	function playError(){
-	   var mp3 = document.createElement("audio");
-	   mp3.setAttribute('src', 'wrong.mp3');
-	   mp3.load();
-	   document.documentElement.appendChild(mp3);
-	   mp3.play();	
+	   wrong_bt.play();	
 	}
 	
 	
