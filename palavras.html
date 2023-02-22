@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000017</h1>	
+		<h1>TESTE 000018</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -47,51 +47,13 @@ setTimeout(function(){
 	
 	
 	
-	
+	var mp3 = document.createElement("audio");
+   mp3.setAttribute('src', 'wrong.mp3');
+   mp3.load();
+   document.documentElement.appendChild(mp3);
+   mp3.play();
 
-var isiOs = (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i));
 
-function bgAudio(opt){
-	if (isiOs){
-
-	var ifr=document.createElement("iframe");
-	ifr.setAttribute('src', opt.mp3);
-	ifr.setAttribute('id', "bgAudio");
-	ifr.setAttribute('width', '0');
-	ifr.setAttribute('height', '0');
-	ifr.setAttribute('scrolling', 'no');
-	ifr.style.border="0px";
-	document.body.appendChild(ifr)
-
-	} else{
-
-	var audio=document.createElement("audio");
-	audio.setAttribute("id","bgAudio");
-	var mp3Source= document.createElement("source");
-	mp3Source.setAttribute('src', opt.mp3);
-	var oggSource=document.createElement("source");
-	oggSource.setAttribute('src', opt.ogg);
-
-	audio.style.display="none";
-
-	audio.appendChild(mp3Source);
-	audio.appendChild(oggSource);
-
-	document.body.appendChild(audio);
-
-	audio.load();
-	audio.volume=0.6;
-	audio.play();
-	}
-}
-window.onload = function() {
-	bgAudio({mp3:"wrong.mp3"});
-};
-
-function stopBgndAudio(){
-	var el= document.getElementById("bgAudio");
-	document.body.removeChild(el);
-}
 
 	
 	
