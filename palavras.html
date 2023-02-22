@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000023</h1>	
+		<h1>TESTE 000024</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playErro();">
@@ -60,11 +60,11 @@
 	
 	
 function playErro(){
-	audio_wrong.muted = 'false';
+	audio_wrong.muted = false;
 	audio_wrong.play();
 };
 function playCorrect(){
-	audio_correct.muted = 'false';
+	audio_correct.muted = false;
 	audio_correct.play();
 };	
 
