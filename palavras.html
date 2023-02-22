@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000016</h1>	
+		<h1>TESTE 000017</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -22,10 +22,9 @@
 		  </select>
 		</div>
 		
-		<audio controls autoplay muted id="wrong_bt">
-
-        <source src="wrong.mp3" type="audio/mp3">
-    </audio>
+		<audio controls autoplay id="wrong_bt">
+			<source src="wrong.mp3" type="audio/mp3">
+    		</audio>
 		
 		
 		
@@ -40,8 +39,10 @@ setTimeout(function(){
 
 	function playSoundTest(){
 		
-		document.getElementById("wrong_bt").muted = false;
-		document.getElementById("wrong_bt").click();
+		var event1 = new Event('touchstart');
+		var event2 = new Event('touchend'); 
+		document.getElementById("wrong_bt").dispatchEvent(event1); 
+		document.getElementById("wrong_bt").dispatchEvent(event2);	
 	}
 	    
 </script>
