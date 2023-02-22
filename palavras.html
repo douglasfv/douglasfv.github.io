@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000010</h1>	
+		<h1>TESTE 000012</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -40,10 +40,8 @@ setTimeout(function(){
 
 	function playSoundTest(){
 		
-		
-		alert("opa");
+		document.getElementById("wrong_bt").muted = false;
 		document.getElementById("wrong_bt").play();
-		
 	}
 	    
 
