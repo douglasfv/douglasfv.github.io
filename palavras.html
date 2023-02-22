@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000021</h1>	
+		<h1>TESTE 000022</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playError();">
@@ -28,9 +28,18 @@
 		
 		
 		
-		<audio controls autoplay id="wrong_bt">
+		<audio controls autoplay muted id="audio_wrong">
 			<source src="wrong.mp3" type="audio/mp3">
-    		</audio>
+		</audio>
+		<audio controls autoplay muted id="audio_correct">
+			<source src="correct.mp3" type="audio/mp3">
+		</audio>
+		<audio controls autoplay muted id="audio_pass">
+			<source src="pass.mp3" type="audio/mp3">
+		</audio>
+		<audio controls autoplay muted id="audio_lose">
+			<source src="lose.mp3" type="audio/mp3">
+		</audio>
 		
 		
 		
@@ -42,17 +51,22 @@
 	
 	
 setTimeout(function(){
-   window.location.reload(1);
-}, 15000);
+	audio_wrong.play();
+	setTimeout(function(){
+		audio_correct.play();
+	}, 4000);
+	setTimeout(function(){
+		audio_pass.play();
+	}, 4000);
+	setTimeout(function(){
+	audio_lose.play();
+	}, 4000);
+}, 19000);
 
 
 	
 	
 	
-	
-	function playError(){
-	   wrong_bt.play();	
-	}
 	
 	
 	
