@@ -37,14 +37,68 @@ setTimeout(function(){
    window.location.reload(1);
 }, 9000);
 
-	function playSoundTest(){
-		
-		var event1 = new Event('touchstart');
-		var event2 = new Event('touchend'); 
-		document.getElementById("wrong_bt").dispatchEvent(event1); 
-		document.getElementById("wrong_bt").dispatchEvent(event2);	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+var isiOs = (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i));
+
+function bgAudio(opt){
+	if (isiOs){
+
+	var ifr=document.createElement("iframe");
+	ifr.setAttribute('src', opt.mp3);
+	ifr.setAttribute('id', "bgAudio");
+	ifr.setAttribute('width', '0');
+	ifr.setAttribute('height', '0');
+	ifr.setAttribute('scrolling', 'no');
+	ifr.style.border="0px";
+	document.body.appendChild(ifr)
+
+	} else{
+
+	var audio=document.createElement("audio");
+	audio.setAttribute("id","bgAudio");
+	var mp3Source= document.createElement("source");
+	mp3Source.setAttribute('src', opt.mp3);
+	var oggSource=document.createElement("source");
+	oggSource.setAttribute('src', opt.ogg);
+
+	audio.style.display="none";
+
+	audio.appendChild(mp3Source);
+	audio.appendChild(oggSource);
+
+	document.body.appendChild(audio);
+
+	audio.load();
+	audio.volume=0.6;
+	audio.play();
 	}
-	    
+}
+window.onload = function() {
+	bgAudio({mp3:"wrong.mp3"});
+};
+
+function stopBgndAudio(){
+	var el= document.getElementById("bgAudio");
+	document.body.removeChild(el);
+}
+
+	
+	
+	
+	
+	
+	
 </script>
 
 
