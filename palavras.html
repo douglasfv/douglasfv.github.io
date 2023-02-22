@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000015</h1>	
+		<h1>TESTE 000016</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -41,15 +41,9 @@ setTimeout(function(){
 	function playSoundTest(){
 		
 		document.getElementById("wrong_bt").muted = false;
-		document.getElementById("wrong_bt").play();
+		document.getElementById("wrong_bt").click();
 	}
 	    
-
-		bell = new Audio("wrong_bt.mp3");
-/*** The magical line ***/
-bell.load();
-
-bell.play();
 </script>
 
 
