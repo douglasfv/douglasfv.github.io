@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.36</title>
+  <title>1.37</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -365,16 +365,16 @@ body{
 						</div>
 						
 						<br></br>
-						<audio controls autoplay id="audio_wrong" onclick="hideButton();">
+						<audio controls autoplay id="audio_wrong" onclick="hideButton(this);">
 							<source src="wrong.mp3" type="audio/mp3">
 						</audio>
-						<audio controls autoplay muted id="audio_correct" style="display: none">
+						<audio controls autoplay muted id="audio_correct" onclick="hideButton(this);">
 							<source src="correct.mp3" type="audio/mp3">
 						</audio>
-						<audio controls autoplay muted id="audio_pass" style="display: none">
+						<audio controls autoplay muted id="audio_pass" onclick="hideButton(this);">
 							<source src="pass.mp3" type="audio/mp3">
 						</audio>
-						<audio controls autoplay muted id="audio_lose" style="display: none">
+						<audio controls autoplay muted id="audio_lose" onclick="hideButton(this);">
 							<source src="lose.mp3" type="audio/mp3">
 						</audio>
 						
@@ -570,8 +570,8 @@ body{
 $("#modal_step1").modal();
 
 
-function hideButton(){
-	document.getElementById("audio_wrong"). display = 'none';
+function hideButton(x){
+	x.display = 'none';
 }
 
 	
