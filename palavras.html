@@ -11,7 +11,7 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000008</h1>	
+		<h1>TESTE 000009</h1>	
 		
 		<div class="form-group">		  
 		  <select class="form-control" id="qq" onchange="playSoundTest();">
@@ -36,9 +36,10 @@
 <script type="text/javascript">
 setTimeout(function(){
    window.location.reload(1);
-}, 5000);
+}, 9000);
 
 	function playSoundTest(){
+		document.getElementById("wrong_bt").mute();
 		document.getElementById("wrong_bt").play();
 		
 	}
