@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.34</title>
+  <title>1.35</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -365,6 +365,18 @@ body{
 						</div>
 						
 						<br></br>
+						<audio controls autoplay muted id="audio_wrong" onclick="hideButton();" style="display: none">
+							<source src="wrong.mp3" type="audio/mp3">
+						</audio>
+						<audio controls autoplay muted id="audio_correct" style="display: none">
+							<source src="correct.mp3" type="audio/mp3">
+						</audio>
+						<audio controls autoplay muted id="audio_pass" style="display: none">
+							<source src="pass.mp3" type="audio/mp3">
+						</audio>
+						<audio controls autoplay muted id="audio_lose" style="display: none">
+							<source src="lose.mp3" type="audio/mp3">
+						</audio>
 						
 						<h5>Pronto! Você poderá personalizar o Nome e a Foto de cada jogador após fechar esta janela.</h5>
 						<h6> - Clique em Nome e informe o nome do Participante</h6>
@@ -558,15 +570,11 @@ body{
 $("#modal_step1").modal();
 
 
-
+function hideButton(){
+	document.getElementById("audio_wrong"). display = 'none';
+}
 
 	
-var audio_correct = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/correct.mp3');
-var audio_wrong = new Audio('../sound/wrong.mp3');
-var audio_pass = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/pass.mp3');
-var audio_loose = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/loose.mp3');
-var audio_wheel = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/wheel.mp3');
-
 
 	
 document.getElementById("player").value = 1;
