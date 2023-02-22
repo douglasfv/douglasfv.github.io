@@ -14,7 +14,7 @@
 		<h1>TESTE 000018</h1>	
 		
 		<div class="form-group">		  
-		  <select class="form-control" id="qq" onchange="playSoundTest();">
+		  <select class="form-control" id="qq" onchange="playError();">
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
@@ -33,6 +33,8 @@
 </body>
 
 <script type="text/javascript">
+	
+	
 setTimeout(function(){
    window.location.reload(1);
 }, 9000);
@@ -42,19 +44,17 @@ setTimeout(function(){
 	
 	
 	
+	window.location.reload(1);
+	function playError(){
+	   var mp3 = document.createElement("audio");
+	   mp3.setAttribute('src', 'wrong.mp3');
+	   mp3.load();
+	   document.documentElement.appendChild(mp3);
+	   mp3.play();	
+	}
 	
 	
 	
-	
-	
-	var mp3 = document.createElement("audio");
-   mp3.setAttribute('src', 'wrong.mp3');
-   mp3.load();
-   document.documentElement.appendChild(mp3);
-   mp3.play();
-
-
-
 	
 	
 	
