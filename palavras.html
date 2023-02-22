@@ -11,31 +11,50 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000002</h1>	
+		<h1>TESTE 000003</h1>	
+		
+		<div class="form-group">		  
+		  <select class="form-control" id="qq" onchange="playSoundTest();">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>			
+		  </select>
+		</div>
+		
+		
+		
+		
 	</form>
 </body>
 
 <script type="text/javascript">
-
+	
+	
 
 	var audio_correct = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/correct.mp3');
 	var audio_wrong = new Audio('../sound/wrong.mp3');
 	var audio_pass = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/pass.mp3');
 	var audio_loose = new Audio('https://github.com/douglasfv/douglasfv.github.io/blob/main/sound/loose.mp3');
 	var audio_wheel = new Audio('wheel.wav');
+	
+	
+	function playSoundTest(){
+		audio_correct.load();
+		audio_correct.play();
+		
+		audio_wrong.load();
+		audio_wrong.play();
+		
+		audio_pass.play();
+		audio_loose.play();
+		audio_wrong.play();
+		
+		audio_wheel.load();
+		audio_wheel.play();
+	}
 	    
-audio_correct.load();
-	audio_correct.play();
 	
-	audio_wrong.load();
-	audio_wrong.play();
-	
-	audio_pass.play();
-	audio_loose.play();
-	audio_wrong.play();
-	
-	audio_wheel.load();
-	audio_wheel.play();
 
 
 
