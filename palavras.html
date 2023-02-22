@@ -11,10 +11,19 @@
 
 <body style="width: 99%;">
 	<form id="myForm">
-		<h1>TESTE 000022</h1>	
+		<h1>TESTE 000023</h1>	
 		
 		<div class="form-group">		  
-		  <select class="form-control" id="qq" onchange="playError();">
+		  <select class="form-control" id="qq" onchange="playErro();">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>			
+		  </select>
+		</div>
+		
+		<div class="form-group">		  
+		  <select class="form-control" id="qq32" onchange="playCorrect();">
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
@@ -50,30 +59,15 @@
 <script type="text/javascript">
 	
 	
-setTimeout(function(){
+function playErro(){
+	audio_wrong.muted = 'false';
 	audio_wrong.play();
-	setTimeout(function(){
-		audio_correct.play();
-	}, 4000);
-	setTimeout(function(){
-		audio_pass.play();
-	}, 4000);
-	setTimeout(function(){
-	audio_lose.play();
-	}, 4000);
-}, 19000);
+};
+function playCorrect(){
+	audio_correct.muted = 'false';
+	audio_correct.play();
+};	
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </script>
