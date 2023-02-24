@@ -99,7 +99,7 @@ body{
     border-radius: 25px;
     background: #4a5485;
     padding: 9px;
-    width: 10%;
+    width: 20%;
     text-align: center;
 }
 
@@ -752,7 +752,7 @@ function nextTurn(){
 		document.getElementById("result").className = "the_end";
 		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
 		document.body.className = "bkgd_win";
-		setTimeout(function(){ showRanking() }, 5000);
+		setTimeout(function(){ showRanking() }, 3000);
 	}else{
 		nextPlayer();
 		unlockGirar();
