@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.65</title>
+  <title>1.66</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -68,8 +68,8 @@ body{
 
 .winner {
   vertical-align: middle;
-  width: 150px;
-  height: 150px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
   border-style: inset;
   margin-left: auto;
@@ -99,7 +99,7 @@ body{
     border-radius: 25px;
     background: #4a5485;
     padding: 9px;
-    width: 42%;
+    width: 20%;
     text-align: center;
 }
 
@@ -437,9 +437,9 @@ body{
 
 						<div id="winner_div" style="display: none">
 							<h2 align="center" style="color: white">
-								<i class="fas fa-trophy" style="color: goldenrod;"></i>
-								<output id="winner_name"></output>
-								<i class="fas fa-trophy" style="color: goldenrod;"></i>
+								<i class="fas fa-trophy" style="color: goldenrod; font-size: 20px;"></i>
+								<output id="winner_name">VENCEDOR</output>
+								<i class="fas fa-trophy" style="color: goldenrod; font-size: 20px;"></i>
 							</h2>
 							<img id="winner_img" src="" alt="Avatar" class="winner" style="align-items: center">
 							<h1 align="center" style="color: white">
@@ -752,7 +752,7 @@ function nextTurn(){
 		document.getElementById("result").className = "the_end";
 		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
 		document.body.className = "bkgd_win";
-		setTimeout(function(){ showRanking() }, 5000);
+		setTimeout(function(){ showRanking() }, 3000);
 	}else{
 		nextPlayer();
 		unlockGirar();
@@ -761,9 +761,9 @@ function nextTurn(){
 	/* Comment on feb 2, 2023
 	if(usedQuestions.length == questions.length){
 		document.getElementById("result").className = "the_end";
-		document.getElementById("result").innerHTML  = "FIM DO JOGO!";
+		document.getElementById("result").innerHTML  = "ACABOU!";
 		document.getElementById("bg_main").src = "https://media.giphy.com/media/3xz2BRU6WpaxKiPzuE/giphy.mp4";
-		setTimeout(function(){ showRanking() }, 5000);
+		setTimeout(function(){ showRanking() }, 2000);
 
 	} else{
 		nextPlayer();
@@ -1218,7 +1218,7 @@ function changePlayersQtd(){
 	
 	
 	//1 hour game + -
-	maxRounds = Math.round(40/qtdPlayers);
+	maxRounds = Math.round(2/qtdPlayers);
 	
 	
 	//oculta todos na navbar
