@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.45</title>
+  <title>1.46</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -966,7 +966,7 @@ function rotateWheel() {
   startAngle += (spinAngle * Math.PI / 180);
   drawRouletteWheel();
   spinTimeout = setTimeout('rotateWheel()', 30);
-   console.log(Math.floor((360 - degrees % 360) /(arc * 180 / Math.PI));
+   console.log(Math.floor((360 - degrees % 360) /(arc * 180 / Math.PI)));
 }
 
 function stopRotateWheel() {
