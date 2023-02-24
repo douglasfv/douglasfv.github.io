@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>2.04</title>
+  <title>2.05</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -896,9 +896,20 @@ var theWheel = new Winwheel({
     'type'     : 'spinToStop',
     'duration' : 8,     // Duration in seconds.
     'spins'    : 3,     // Default number of complete spins.
+    'callbackSound' : playsound,
+    'soundTrigger' :'pin',
     'callbackFinished' : setScore
 }
 });
+
+var audio = new Audio('tick.mp3');
+
+function playSound(){
+  audio.pause();
+  audio.currentTime = 0;
+  audio.play();
+  
+}
 
 
 var wheelSpinning = false;
