@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.47</title>
+  <title>1.48</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -955,8 +955,12 @@ function spin() {
 	rotateWheel();
 }
 
+
+var currentIndexWheel = 0;
+var startRate = 10;
+
 function rotateWheel() {
-	audio_wheel.play();		
+			
   spinTime += 30;
   if(spinTime >= spinTimeTotal) {
     stopRotateWheel();
@@ -966,8 +970,19 @@ function rotateWheel() {
   startAngle += (spinAngle * Math.PI / 180);
   drawRouletteWheel();
   spinTimeout = setTimeout('rotateWheel()', 30);
-  console.log(Math.floor((360 - (startAngle * 180 / Math.PI + 90) % 360) /(arc * 180 / Math.PI)));
-}
+  
+  indexWheel = Math.floor((360 - (startAngle * 180 / Math.PI + 90) % 360) /(arc * 180 / Math.PI));
+  if(currentIndexWheel != indexWheel){
+	audio_wheel.playbackRate = startRate;
+	audio_wheel.play();
+	if(audio_wheel.playbackRate > 1){
+		startRate -= 1;
+	}
+  }
+ }
+
+
+
 
 function stopRotateWheel() {
   clearTimeout(spinTimeout);
