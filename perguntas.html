@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>2.06</title>
+  <title>1.49</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,9 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/3d2765a2cd.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
-  <script type="text/javascript" src="Winwheel.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>	
 	
 </head>
 
@@ -31,13 +29,7 @@ body{
   }
 }
 
-/* Sets the background image for the wheel */
-td.the_wheel
-{
-    background-image: url(wheel_back.png);
-    background-position: center;
-    background-repeat: none;
-}
+
 
 
 
@@ -388,6 +380,8 @@ td.the_wheel
 						<audio controls autoplay id="audio_wheel" onplay="hideButton(this);">
 							<source src="wheel.mp3" type="audio/mp3">
 						</audio>
+					
+					
 						
 						<h5>Pronto! Você poderá personalizar o Nome e a Foto de cada jogador após fechar esta janela.</h5>
 						<h6> - Clique em Nome e informe o nome do Participante</h6>
@@ -420,13 +414,8 @@ td.the_wheel
 	<div id="painel">
 		<div class="row">
 			<div class="col-5">
-			  	<td width="438" height="582" class="the_wheel" align="center" valign="center">
-					<canvas id="canvas" width="434" height="434">		
-					</canvas>
-				</td>
-			</div>
-			
-			
+			  	<canvas id="canvas" class="canvas_style" width="600" height="600"></canvas>
+			</div>	 	
 			
 			
 			<div class="col-7" style="display: none; font-size: 25px; margin-top: -20px;" id="qa">
@@ -475,8 +464,9 @@ td.the_wheel
 	</div>
   	
 	<div>
-  	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 220px;">	  		
-			<button type="button" class="btn btn-danger btn-lg" id='spin' style="width: 100px; height: 100px" onClick="startSpin();">Girar</button>
+  	<nav class="navbar navbar-expand-bg bg-dark navbar-dark fixed-bottom" style="height: 220px;">
+	  		<button type="button" class="btn btn-danger btn-lg" id='spin' style="width: 100px; height: 100px">Girar</button>
+
 	  		<div id="p1"  style="display: none" >	  					  		       					  				
   				<img id="img1" src="pictures/avatar.JPG" alt="Avatar" class="selected avat pulse">
 		  		<input id="profile-image1-upload" class="hidden" type="file"  accept="image/*" style="display: none;">
@@ -619,6 +609,8 @@ var usedQuestions = new Array();
 
 
 function onClickToSpin(){
+	
+	audio_wheel.play();
 	document.body.className = "bkgd_main";
 
 	
@@ -854,108 +846,165 @@ function showRanking(){
 
 
 
-// ROLETA ---------------------------------------------------------------------------
 
-// Create new wheel object specifying the parameters at creation time.
-var theWheel = new Winwheel({
-'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
-'innerRadius'     : 75,         // Make wheel hollow so segments don't go all way to center.
-'textFontSize'    : 24,         // Set default font size for the segments.
-'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
-'textAlignment'   : 'outer',    // Align text to outside of wheel.
-'numSegments'     : 24,         // Specify number of segments.
-'segments'        :             // Define segments including colour and text.
-[                               // font size and test colour overridden on backrupt segments.
-   {'fillStyle' : '#ee1c24', 'text' : '300'},
-   {'fillStyle' : '#3cb878', 'text' : '450'},
-   {'fillStyle' : '#f6989d', 'text' : '600'},
-   {'fillStyle' : '#00aef0', 'text' : '750'},
-   {'fillStyle' : '#f26522', 'text' : '500'},
-   {'fillStyle' : '#000000', 'text' : 'Perdeu', 'textFontSize' : 12, 'textFillStyle' : '#ffffff'},
-   {'fillStyle' : '#e70697', 'text' : '3000'},
-   {'fillStyle' : '#fff200', 'text' : '600'},
-   {'fillStyle' : '#f6989d', 'text' : '700'},
-   {'fillStyle' : '#ee1c24', 'text' : '350'},
-   {'fillStyle' : '#3cb878', 'text' : '500'},
-   {'fillStyle' : '#f26522', 'text' : '100'},
-   {'fillStyle' : '#a186be', 'text' : '300'},
-   {'fillStyle' : '#fff200', 'text' : '400'},
-   {'fillStyle' : '#00aef0', 'text' : '650'},
-   {'fillStyle' : '#ee1c24', 'text' : '1000'},
-   {'fillStyle' : '#f6989d', 'text' : '500'},
-   {'fillStyle' : '#f26522', 'text' : '400'},
-   {'fillStyle' : '#3cb878', 'text' : '900'},
-   {'fillStyle' : '#000000', 'text' : 'Passa', 'textFontSize' : 16, 'textFillStyle' : '#ffffff'},
-   {'fillStyle' : '#a186be', 'text' : '600'},
-   {'fillStyle' : '#fff200', 'text' : '100'},
-   {'fillStyle' : '#00aef0', 'text' : '800'},
-   {'fillStyle' : '#ffffff', 'text' : 'PASSA VEZ', 'textFontSize' : 12}
-],
-'animation' :           // Specify the animation to use.
-{
-    'type'     : 'spinToStop',
-    'duration' : 8,     // Duration in seconds.
-    'spins'    : 3,     // Default number of complete spins.
-    'callbackSound' : playSound,
-    'soundTrigger' :'pin',
-    'callbackFinished' : setScore
+
+
+
+var options = ["25", "100", "Perdeu", "110", "10", "5", "120", "Passa", "90", "20", "15", "80", "Perdeu", "70", "30", "45", "60", "Passa", "50", "40"];
+
+var startAngle = 0;
+var arc = Math.PI / (options.length / 2);
+var spinTimeout = null;
+
+var spinArcStart = 10;
+var spinTime = 0;
+var spinTimeTotal = 0;
+
+var ctx;
+
+document.getElementById("spin").addEventListener("click", spin);
+
+function byte2Hex(n) {
+  var nybHexString = "0123456789ABCDEF";
+  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
 }
-});
 
-var audio = new Audio('tick.mp3');
+function RGB2Color(r,g,b) {
+	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
 
-function playSound(){
-  audio.pause();
-  audio.currentTime = 0;
-  audio.play();
+function getColor(item, maxitem) {
+  var phase = 0;
+  var center = 128;
+  var width = 127;
+  var frequency = Math.PI*2/maxitem;
   
+  red   = Math.sin(frequency*item+2+phase) * width + center;
+  green = Math.sin(frequency*item+0+phase) * width + center;
+  blue  = Math.sin(frequency*item+4+phase) * width + center;
+  
+  return RGB2Color(red,green,blue);
+}
+
+function drawRouletteWheel() {
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    var outsideRadius = 200;
+    var textRadius = 160;
+    var insideRadius = 125;
+
+    ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,700,700);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+
+    ctx.font = 'bold 20px Helvetica, Arial';
+
+    for(var i = 0; i < options.length; i++) {
+	
+	
+		if(options[i] == "Perdeu" || options[i] == "Passa" ){
+			ctx.font = 'bold 14px Helvetica, Arial';	
+		}else{
+			ctx.font = 'bold 20px Helvetica, Arial';
+		}
+	
+	
+      var angle = startAngle + i * arc;
+      //ctx.fillStyle = colors[i];
+      ctx.fillStyle = getColor(i, options.length);
+
+      ctx.beginPath();
+      ctx.arc(350, 350, outsideRadius, angle, angle + arc, false);
+      ctx.arc(350, 350, insideRadius, angle + arc, angle, true);
+      ctx.stroke();
+      ctx.fill();
+
+      ctx.save();
+      ctx.shadowOffsetX = -1;
+      ctx.shadowOffsetY = -1;
+      ctx.shadowBlur    = 0;
+      ctx.shadowColor   = "rgb(220,220,220)";
+      ctx.fillStyle = "black";
+      ctx.translate(350 + Math.cos(angle + arc / 2) * textRadius, 
+                    350 + Math.sin(angle + arc / 2) * textRadius);
+      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      var text = options[i];
+      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.restore();
+    } 
+
+    //Arrow
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.moveTo(350 - 4, 350 - (outsideRadius + 5));
+    ctx.lineTo(350 + 4, 350 - (outsideRadius + 5));
+    ctx.lineTo(350 + 4, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 + 9, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 + 0, 350 - (outsideRadius - 13));
+    ctx.lineTo(350 - 9, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 - 4, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 - 4, 350 - (outsideRadius + 5));
+    ctx.fill();
+  }
+}
+
+function spin() {
+	onClickToSpin();
+	
+	spinAngleStart = Math.random() * 10 + 10;
+	spinTime = 0;
+	spinTimeTotal = Math.random() * 3 + 4 * 1000;
+	rotateWheel();
 }
 
 
-var wheelSpinning = false;
 
 
-// -------------------------------------------------------
-// Click handler for spin button.
-// -------------------------------------------------------
-function startSpin()
-{
-// Ensure that spinning can't be clicked again while already running.
-if (wheelSpinning == false)
-{
+function rotateWheel() {
+			
+  spinTime += 30;
+  if(spinTime >= spinTimeTotal) {
+    stopRotateWheel();
+    return;
+  }
+  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+  startAngle += (spinAngle * Math.PI / 180);
+  drawRouletteWheel();
+  spinTimeout = setTimeout('rotateWheel()', 30);  
+  
+ }
 
-    theWheel.animation.spins = 3;
 
-    // Disable the spin button so can't click again while wheel is spinning.
-    onClickToSpin();
 
-    // Begin the spin animation by calling startAnimation on the wheel object.
-    theWheel.startAnimation();
 
-    // Set to true so that power can't be changed and spin button re-enabled during
-    // the current animation. The user will have to reset before spinning again.
-
-			//eu já faço isso no método afterSpinner()
-			//wheelSpinning = true;
+function stopRotateWheel() {
+  clearTimeout(spinTimeout);
+  var degrees = startAngle * 180 / Math.PI + 90;
+  var arcd = arc * 180 / Math.PI;
+  var index = Math.floor((360 - degrees % 360) / arcd);
+  ctx.save();
+  ctx.font = 'bold 50px Helvetica, Arial';
+  var text = options[index];
+  document.getElementById("score").value = text;
+  ctx.fillText(text, 350 - ctx.measureText(text).width / 2, 350 + 10);
+  ctx.restore();
+  afterSpinner(text);
 }
+
+function easeOut(t, b, c, d) {
+  var ts = (t/=d)*t;
+  var tc = ts*t;
+  return b+c*(tc + -3*ts + 3*t);
 }
 
-
-// -------------------------------------------------------
-// Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
-// -------------------------------------------------------
-function setScore(indicatedSegment)
-{     				
-document.getElementById("score").value = indicatedSegment.text;
-		afterSpinner(indicatedSegment.text);
-}
-       
-//--------------------------------------------------------------------------------
+drawRouletteWheel();
 
 
 
 
-//CRONOMETRO DA BARRA ---------------------------------------------------
+
 
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
@@ -1070,7 +1119,7 @@ function setCircleDasharray() {
     .setAttribute("stroke-dasharray", circleDasharray);
 }
 
-//--------------------------------------------------------------------
+
 
 
 
