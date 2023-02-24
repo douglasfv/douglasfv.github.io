@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.41</title>
+  <title>1.42</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -606,7 +606,7 @@ var usedQuestions = new Array();
 function onClickToSpin(){
 	document.body.className = "bkgd_main";
 
-	//tabela de Bugs e A fazeres
+	
 	document.getElementById("card").style.backgroundColor = '#4a5485';
 
 	document.getElementById("hand1").style.display = "none";
@@ -953,6 +953,7 @@ function spin() {
 }
 
 function rotateWheel() {
+	audio_wheel.play();		
   spinTime += 30;
   if(spinTime >= spinTimeTotal) {
     stopRotateWheel();
@@ -1347,13 +1348,6 @@ $(document).ready(function() {
 });
 	
 	
-	
-	
-function play() {
-  var audio = new Audio('https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3');
-  audio.play();
-}	      
-</script>
 
 
 </html>
