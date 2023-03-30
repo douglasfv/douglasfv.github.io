@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.71</title>
+ <title>1.72</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -610,7 +610,7 @@ var usedQuestions = new Array();
 
 
 function onClickToSpin(){
-	
+	console.log("onClickToSpin");
 	audio_wheel.play();
 	document.body.className = "bkgd_main";
 
@@ -631,6 +631,7 @@ function onClickToSpin(){
 }
 
 function afterSpinner(value){
+console.log("afterSpinner");
 	//limpa a resposta escolhida na última rodada
 	document.getElementById("a" + 1).style.fontWeight = "";
 	document.getElementById("a" + 2).style.fontWeight = "";
@@ -647,6 +648,7 @@ function afterSpinner(value){
 }
 
 function showQA(){
+console.log("showQA");
 	//obtém o index de uma pergunta que ainda não tenha sido exibida
 	var q = parseInt(nextQuestion());
 	
@@ -666,6 +668,7 @@ function showQA(){
 
 
 function nextQuestion(){
+console.log("nextQuestion");
 	//obtém um número aleatório entre 0 e o último index da lista de perguntas 
 	var indexOfRandomQuestion = parseInt(Math.floor(Math.random() * (questions.length)));
 
@@ -683,6 +686,7 @@ function nextQuestion(){
 }
 	
 function chooseAnswer(a){
+console.log("chooseAnswer");
 	var islocked = (document.getElementById("a_locked").value == 'true');
 	
 	if(!islocked){
@@ -696,6 +700,7 @@ function chooseAnswer(a){
 }
 
 function check(a){
+console.log("check");
 	var q = document.getElementById("question").value;
 	var qa = new Array();
 	qa.push(questions[q]);
@@ -732,6 +737,7 @@ function check(a){
 }
 
 function updateScore(){
+console.log("updateScore");
 	var newScore = document.getElementById("score").value;
 	if(newScore != "Passa" && newScore != "Perdeu"){
 		var oldScore = document.getElementById("tt" + document.getElementById("player").value ).value;
@@ -746,7 +752,7 @@ function updateScore(){
 }
 
 function nextTurn(){
-
+console.log("nextTurn");
 
 	if(round == maxRounds && parseInt(document.getElementById("player").value) == qtdPlayers){
 		document.getElementById("result").className = "the_end";
@@ -776,6 +782,7 @@ function nextTurn(){
 }
 
 function nextPlayer(){
+console.log("nextPlayer");
 	document.getElementById("img" + document.getElementById("player").value).className = "avatar";
 	
 	if( parseInt(document.getElementById("player").value) == qtdPlayers){
@@ -806,6 +813,7 @@ function unlockSelectAnswer(){
 }
 
 function resetCountDown(){
+console.log("resetCountDown");
 	timePassed = 0;
 	timeLeft = TIME_LIMIT;
 	document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", 283);
@@ -814,6 +822,7 @@ function resetCountDown(){
 
 
 function showRanking(){
+console.log("showRanking");
 	var ranking = new Array();
 	
 	//obtém e organiza todos os pontos
