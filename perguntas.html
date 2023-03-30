@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1.70</title>
+  <title>1.71</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -689,7 +689,7 @@ function chooseAnswer(a){
 		lockSelectAnswer();
 		document.getElementById("a" + a).style.fontWeight = "900";
 		onTimesUp();
-		var wait = parseInt(Math.floor(Math.random() * 5) + 2) * 1000;
+		var wait = parseInt(Math.floor(Math.random() * 5) + 2) * 1;
 		
 		setTimeout(function(){ check(a) }, wait);
 	}
