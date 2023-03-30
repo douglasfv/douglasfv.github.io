@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>1.72</title>
+ <title>1.73</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -433,33 +433,30 @@ body{
 								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(3)"><output id="a3" ></output><i id="hand3" class='far hand'>&#xf0a5;</i></a>
 								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(4)"><output id="a4" ></output><i id="hand4" class='far hand'>&#xf0a5;</i></a>
 							</div>
-					  	</div>
-
-						<div id="winner_div" style="display: none">
+					  	</div>		    	
+			    	</div>
+				</div>
+			</div>
+			
+			<div class="col-8" style="display: none; font-size: 25px; margin-top: -20px; padding-left: 40px" id="winner_div">
+			  	<div class="card" style="width: 100%; padding-left: 5%; height: 70%;background-color: transparent; border-color: transparent">
+			    	<div class="card-body" style="background-color: transparent">
+					  	<div id="winner_d" style="color: transparent">
 							<h2 align="center" style="color: white">
-								<i class="fas fa-trophy" style="color: goldenrod; font-size: 20px;"></i>
+								<i class="fas fa-trophy" style="color: w; font-size: 30px;"></i>
 								<output id="winner_name">VENCEDOR</output>
-								<i class="fas fa-trophy" style="color: goldenrod; font-size: 20px;"></i>
+								<i class="fas fa-trophy" style="color: black; font-size: 30px;"></i>
 							</h2>
 							<img id="winner_img" src="" alt="Avatar" class="winner" style="align-items: center">
 							<h1 align="center" style="color: white">
 								<output id="winner_tt" >0</output>
 							</h1>
-						</div>
-			    	
-			    	
+						</div>		
 			    	</div>
 				  	<div class="row" id="result" style="margin-bottom: -10%;">
 					  	<h2 id="result" style="display: none"></h2>
 				  	</div>
 				</div>
-				
-				
-
-					
-					
-				
-			  	
 			</div>
 	  	</div>
 	</div>
@@ -610,7 +607,7 @@ var usedQuestions = new Array();
 
 
 function onClickToSpin(){
-	console.log("onClickToSpin");
+	//console.log("onClickToSpin");
 	audio_wheel.play();
 	document.body.className = "bkgd_main";
 
@@ -622,7 +619,9 @@ function onClickToSpin(){
 	document.getElementById("hand3").style.display = "none";
 	document.getElementById("hand4").style.display = "none";
 	document.getElementById("painel").style.backgroundColor = "";//fundo
+	
 	document.getElementById("qa").style.display = "none";//perguntas e respostas
+	
 	document.getElementById("result").style.display = "none";//resultado da resposta escolhida
 	resetCountDown();//reinicia o cronometro
 	unlockSelectAnswer();//permite selecionar uma resposta
@@ -631,7 +630,7 @@ function onClickToSpin(){
 }
 
 function afterSpinner(value){
-console.log("afterSpinner");
+//console.log("afterSpinner");
 	//limpa a resposta escolhida na última rodada
 	document.getElementById("a" + 1).style.fontWeight = "";
 	document.getElementById("a" + 2).style.fontWeight = "";
@@ -648,7 +647,7 @@ console.log("afterSpinner");
 }
 
 function showQA(){
-console.log("showQA");
+//console.log("showQA");
 	//obtém o index de uma pergunta que ainda não tenha sido exibida
 	var q = parseInt(nextQuestion());
 	
@@ -661,14 +660,17 @@ console.log("showQA");
 	document.getElementById("a2").value = qa[0][2];
 	document.getElementById("a3").value = qa[0][3];
 	document.getElementById("a4").value = qa[0][4];
-	document.getElementById("qa").style.display = "";
+	
+	document.getElementById("q").style.display = "";//perguntas e respostas
+	document.getElementById("awnsers").style.display = "";//perguntas e respostas
+	
 
 	startTimer();
 }
 
 
 function nextQuestion(){
-console.log("nextQuestion");
+//console.log("nextQuestion");
 	//obtém um número aleatório entre 0 e o último index da lista de perguntas 
 	var indexOfRandomQuestion = parseInt(Math.floor(Math.random() * (questions.length)));
 
@@ -686,21 +688,21 @@ console.log("nextQuestion");
 }
 	
 function chooseAnswer(a){
-console.log("chooseAnswer");
+//console.log("chooseAnswer");
 	var islocked = (document.getElementById("a_locked").value == 'true');
 	
 	if(!islocked){
 		lockSelectAnswer();
 		document.getElementById("a" + a).style.fontWeight = "900";
 		onTimesUp();
-		var wait = parseInt(Math.floor(Math.random() * 5) + 2) * 1;
+		var wait = parseInt(Math.floor(Math.random() * 5) + 2) * 1000;
 		
 		setTimeout(function(){ check(a) }, wait);
 	}
 }
 
 function check(a){
-console.log("check");
+//console.log("check");
 	var q = document.getElementById("question").value;
 	var qa = new Array();
 	qa.push(questions[q]);
@@ -737,7 +739,7 @@ console.log("check");
 }
 
 function updateScore(){
-console.log("updateScore");
+//console.log("updateScore");
 	var newScore = document.getElementById("score").value;
 	if(newScore != "Passa" && newScore != "Perdeu"){
 		var oldScore = document.getElementById("tt" + document.getElementById("player").value ).value;
@@ -752,7 +754,7 @@ console.log("updateScore");
 }
 
 function nextTurn(){
-console.log("nextTurn");
+//console.log("nextTurn");
 
 	if(round == maxRounds && parseInt(document.getElementById("player").value) == qtdPlayers){
 		document.getElementById("result").className = "the_end";
@@ -782,7 +784,7 @@ console.log("nextTurn");
 }
 
 function nextPlayer(){
-console.log("nextPlayer");
+//console.log("nextPlayer");
 	document.getElementById("img" + document.getElementById("player").value).className = "avatar";
 	
 	if( parseInt(document.getElementById("player").value) == qtdPlayers){
@@ -813,7 +815,7 @@ function unlockSelectAnswer(){
 }
 
 function resetCountDown(){
-console.log("resetCountDown");
+//console.log("resetCountDown");
 	timePassed = 0;
 	timeLeft = TIME_LIMIT;
 	document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", 283);
@@ -822,7 +824,7 @@ console.log("resetCountDown");
 
 
 function showRanking(){
-console.log("showRanking");
+//console.log("showRanking");
 	var ranking = new Array();
 	
 	//obtém e organiza todos os pontos
@@ -834,13 +836,14 @@ console.log("showRanking");
 	//obtém o player com a maior pontuação e exibe
 	for(i = 1; i <= qtdPlayers; i++){
 		if(document.getElementById("tt" + i).value == ranking[0]){
-			document.getElementById("q").style.display = "none";
-			document.getElementById("awnsers").style.display = "none";			
+			document.getElementById("qa").style.display = "none";		
 			document.getElementById("winner_img").src = document.getElementById("img" + i).src;
 			document.getElementById("winner_tt").value = document.getElementById("tt" + i).value;
 			document.getElementById("winner_div").style.display = "";
 			document.getElementById("card").style.backgroundColor = "transparent";
+			document.getElementById("winner_d").style.backgroundColor = "transparent";
 			document.getElementById("card").style.borderColor = "transparent";
+			document.getElementById("winner_d").style.borderColor = "transparent";
 		}
 	}
 	
@@ -860,7 +863,7 @@ console.log("showRanking");
 
 
 
-var options = ["25", "100", "30", "150", "10", "5", "Passa", "300", "90", "20", "15", "80", "Perdeu", "70", "30", "45", "60", "10", "50", "Passa"];
+var options = ["Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Perdeu", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa", "Passa"];
 
 var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
@@ -974,7 +977,7 @@ function spin() {
 
 function rotateWheel() {
 			
-  spinTime += 300;
+  spinTime += 30;
   if(spinTime >= spinTimeTotal) {
     stopRotateWheel();
     return;
