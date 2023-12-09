@@ -377,6 +377,9 @@ body{
 						<audio controls autoplay id="audio_wheel" onplay="hideButton(this);">
 							<source src="tick.mp3" type="audio/mp3">
 						</audio>
+						<audio controls autoplay id="audio_end_of_time" onplay="hideButton(this);">
+							<source src="ding.mp3" type="audio/mp3">
+						</audio>
 
 					
 						
@@ -656,7 +659,7 @@ function showQA(){
 	document.getElementById("a3").value = qa[0][3];
 	document.getElementById("a4").value = qa[0][4];
 	
-	document.getElementById("q").style.display = "";//perguntas e respostas
+	document.getElementById("qa").style.display = "";//perguntas e respostas
 	document.getElementById("awnsers").style.display = "";//perguntas e respostas
 	
 
@@ -1077,7 +1080,8 @@ function startTimer() {
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 
-    if (timeLeft === 0) {
+	if (timeLeft === 0) {
+	  audio_end_of_time.play();
       onTimesUp();
     }
   }, 1000);
