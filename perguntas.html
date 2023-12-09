@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>1.73</title>
+ <title>1.2023.12.09</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -101,6 +101,7 @@ body{
     padding: 9px;
     width: 20%;
     text-align: center;
+    color: white;
 }
 
 
@@ -313,7 +314,7 @@ body{
 					<div class="modal-body">
 						<h6>Para usar à partir de um celular: 1)Escolha o modo Computador no navegador.
 							2) Diminua a fonte ao máximo. 3) Oculte a barra de ferramentas do navegador. </h6>
-						<h5>Faça o upload da planilha do Excel com as perguntas e respostas. A planilha deverá ser como no exemplo abaixo:</h5>
+						<h5>Faça o upload da planilha do Excel com no mínimo 50 perguntas e respostas. A planilha deverá ser como no exemplo abaixo:</h5>
 						
 						<img class="img-responsive" src="pictures/xls_example.JPG" width="100%"/> 
 					
@@ -442,7 +443,7 @@ body{
 			    	<div class="card-body" style="background-color: transparent">
 					  	<div id="winner_d" style="color: transparent">
 							<h2 align="center" style="color: white">
-								<i class="fas fa-trophy" style="color: w; font-size: 30px;"></i>
+								<i class="fas fa-trophy" style="color: black; font-size: 30px;"></i>
 								<output id="winner_name">VENCEDOR</output>
 								<i class="fas fa-trophy" style="color: black; font-size: 30px;"></i>
 							</h2>
@@ -585,7 +586,7 @@ document.getElementById("card").style.backgroundColor = '#4a5485';
 
 
 
-
+// apenas inicializando. Para alterar veja o método changePlayersQtd().
 var maxRounds = 1;
 
 
@@ -1191,6 +1192,11 @@ function ProcessExcel(data) {
     //Read all rows from First Sheet into an JSON array.
     var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
 
+	if(excelRows.length < 50){
+		alert("O arquivo xls deve ter pelo menos 50 perguntas.");
+		location.reload();
+	}
+
     for (var i = 0; i < excelRows.length; i++) {
         
         var id = excelRows[i].Id;
@@ -1228,9 +1234,9 @@ function changePlayersQtd(){
 	qtdPlayers = document.getElementById("qtd_players").value;
 	
 	
-	//1 hour game + -
-	maxRounds = Math.round(50/qtdPlayers);
-	
+	//Definindo quantidade de rodadas(se divide quantidade de perguntas que serão selecionadas (50) pela qtd de jogadores.
+	maxRounds = Math.trunc(50/qtdPlayers);
+
 	
 	//oculta todos na navbar
 	for (var i = 1; i <= 10; i++) {
