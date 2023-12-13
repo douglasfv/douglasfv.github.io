@@ -1217,9 +1217,15 @@ function ProcessExcel(data) {
 			correctAnswer = a4;
 		}
 		
+    //valida se tem alguma pergunta ou resposta com mais de 60 caracteres
+    if((question.length() || a1.length() || a2.length() || a3.length() || a4.length()) > 60)
+      alert("O arquivo xls nao pode ter pergunta ou respostas com mais de 60 caracteres.");
+  		location.reload();
+     } 
+    
+    
         questions.push( new Array(question, a1, a2, a3, a4, correctAnswer));
     }
-    
    
 };
 //-------------------------------
