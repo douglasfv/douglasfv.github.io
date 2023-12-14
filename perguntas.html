@@ -955,7 +955,7 @@ function drawRouletteWheel() {
     ctx.lineTo(350 + 4, 350 - (outsideRadius - 5));
     ctx.lineTo(350 + 9, 350 - (outsideRadius - 5));
     ctx.lineTo(350 + 0, 350 - (outsideRadius - 13));
-    ctx.lineTo(350 - 9, 350 - (outsideRadius - 5));
+    ctx.lineTo(350 - 9, 350 - (outsideRadius - 5));	
     ctx.lineTo(350 - 4, 350 - (outsideRadius - 5));
     ctx.lineTo(350 - 4, 350 - (outsideRadius + 5));
     ctx.fill();
@@ -1218,7 +1218,7 @@ function ProcessExcel(data) {
 		}
 		
 		//valida se tem alguma pergunta ou resposta com mais de 60 caracteres
-		if((a1.length || a2.length || a3.length || a4.length) > 60){
+		if((a1.length || a2.length || a3.length || a4.length) > 160){
 			alert("O arquivo xls nao pode ter respostas com mais de 60 caracteres.");
 			location.reload();
 			break;
