@@ -422,11 +422,11 @@ body{
 			<div class="col-8" style="display: none; font-size: 25px; margin-top: -20px; padding-left: 40px" id="qa">
 			  	<div class="card text-white" style="width: 100%; padding-left: 5%; height: 70%;" id="card">
 			    	<div class="card-body" >
-					  	<div class="row" >
+					  	<div class="row" style="height: 25%">
 						  	<output id="q" ></output>
 					  	</div>
 					  	
-					  	<div class="row" id="awnsers" style="margin-top: 1%; width: 100%!important; padding-top: 5%;">
+					  	<div class="row" id="awnsers" style="margin-top: 1%; width: 100%!important">
 							<div class="list-group" style="width: 100%;">
 								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(1)"><output id="a1" ></output><i id="hand1" class='far hand'>&#xf0a5;</i></a>
 								<a href="#" class="list-group-item list-group-item-action list-group-item-dark" onclick="chooseAnswer(2)"><output id="a2" ></output><i id="hand2" class='far hand'>&#xf0a5;</i></a>
@@ -1036,7 +1036,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 45;
+const TIME_LIMIT = 30;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
@@ -1217,14 +1217,12 @@ function ProcessExcel(data) {
 			correctAnswer = a4;
 		}
 		
-    //valida se tem alguma pergunta ou resposta com mais de 60 caracteres
-    if((question.length || a1.length || a2.length || a3.length || a4.length) > 60){
-      alert("O arquivo xls nao pode ter pergunta ou respostas com mais de 60 caracteres.");
-  		location.reload();
-      break;
-     } 
-    
-    
+		//valida se tem alguma pergunta ou resposta com mais de 60 caracteres
+		if((a1.length || a2.length || a3.length || a4.length) > 60){
+			alert("O arquivo xls nao pode ter respostas com mais de 60 caracteres.");
+			location.reload();
+			break;
+		}    
         questions.push( new Array(question, a1, a2, a3, a4, correctAnswer));
     }
    
